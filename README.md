@@ -27,3 +27,4 @@ STRIPE_SECRET_KEY=sk_test_... node server.js
 
 Security note:
 - The server scaffold is minimal and for demo purposes only. For production you must validate webhooks, securely associate purchases with user accounts, and handle retries/failure modes.
+
