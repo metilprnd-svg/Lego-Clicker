@@ -1,0 +1,187 @@
+:root{
+  --bg-1:#07101c;
+  --bg-2:#071829;
+  --accent:#ffd24a;
+  --accent-2:#ff7a00;
+  --glass: rgba(255,255,255,0.06);
+  --glass-2: rgba(255,255,255,0.03);
+  --card: rgba(255,255,255,0.035);
+  --muted: rgba(255,255,255,0.65);
+  --glow: rgba(255,180,60,0.12);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+body{background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:#fff;overflow:hidden}
+
+/* subtle decorative radial highlights for depth */
+body:before{content:'';position:fixed;left:-20%;top:-10%;width:60vw;height:60vh;background:radial-gradient(circle at 20% 30%, rgba(255,120,60,0.06), transparent 20%), radial-gradient(circle at 80% 70%, rgba(90,180,255,0.03), transparent 18%);mix-blend-mode:overlay;pointer-events:none}
+
+.top{display:flex;justify-content:space-between;align-items:center;padding:20px 28px;backdrop-filter: blur(6px);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:14px;margin:14px}
+.title{font-weight:800;letter-spacing:1px;font-size:20px}
+.logo-text{font-weight:900;font-size:20px;letter-spacing:1px;color:linear-gradient(90deg,var(--accent),var(--accent-2));background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 6px 24px rgba(0,0,0,0.6)}
+.logo img{height:44px}
+/* new SVG logo styling */
+.logo-img-wrap{display:flex;align-items:center;gap:12px}
+.logo-img{width:84px;height:44px;object-fit:contain;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.45));transition:transform .22s ease}
+.logo-text-wrap{display:flex;flex-direction:column;line-height:1}
+.logo-main{font-weight:900;font-size:20px;background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo-sub{font-weight:700;font-size:14px;color:rgba(255,255,255,0.9)}
+.logo:hover .logo-img{transform:translateY(-4px) scale(1.02)}
+.stats{display:flex;gap:12px}
+.header-right{display:flex;align-items:center;gap:12px}
+.primary{background:linear-gradient(180deg,#6ee7b7,#34d399);border:none;padding:10px 14px;border-radius:10px;color:#062018;font-weight:700;cursor:pointer}
+.prestige{background:linear-gradient(180deg,#ffd36a,#ff9e1a);color:#2b0e00}
+.prestige .arrow{margin-right:8px;font-weight:900}
+.stat{background:var(--glass);padding:8px 12px;border-radius:10px;min-width:88px;text-align:center}
+.stat div{font-weight:700;font-size:16px}
+.stat.small{opacity:.9}
+
+.flash{position:fixed;left:0;top:0;right:0;bottom:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .28s ease;z-index:9999}
+.flash.hidden{display:none}
+
+.wrap{display:flex;gap:18px;padding:18px;align-items:flex-start}
+.left{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;min-height:62vh}
+.left{position:relative}
+/* Leaderboard */
+.leaderboard-wrap{position:absolute;left:18px;top:18px;width:260px;background:linear-gradient(180deg,var(--card),var(--glass));padding:12px;border-radius:12px;max-height:76vh;overflow:auto;border:1px solid rgba(255,255,255,0.03)}
+.leaderboard h3{margin:0 0 8px 0}
+.leaderboard{display:flex;flex-direction:column;gap:8px}
+.lb-row{display:flex;align-items:center;justify-content:space-between;padding:8px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);font-size:13px}
+.lb-left{display:flex;align-items:center;gap:8px}
+.rank-badge{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:800}
+.rank-1{background:linear-gradient(90deg,#ffd36a,#ffb400);color:#5b2f00}
+.rank-2{background:linear-gradient(90deg,#e6e9ef,#cfd6dd);color:#36424f}
+.rank-3{background:linear-gradient(90deg,#d6a176,#a65a2a);color:#2b1206}
+.username{font-weight:800}
+.username .title{font-weight:600;font-size:11px;color:var(--muted);margin-left:6px}
+.lb-stats{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:12px}
+.lb-row.self{outline:2px solid rgba(255,255,255,0.04)}
+.shop{width:360px;padding:18px;background:linear-gradient(180deg,var(--card),var(--glass));border-radius:14px;margin-right:18px;height:70vh;overflow:auto}
+.shop h3{margin:8px 0 12px 0}
+.shop-list{display:flex;flex-direction:column;gap:10px}
+
+.lego-btn{width:300px;height:170px;border-radius:18px;background:linear-gradient(180deg,#ffd36a,#ff8a1a);box-shadow:0 40px 80px rgba(0,0,0,0.6), 0 8px 28px rgba(255,160,40,0.06) inset;display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;transition:transform .26s cubic-bezier(.2,.9,.2,1), box-shadow .28s;overflow:hidden;border:1px solid rgba(255,200,80,0.12);z-index:20;touch-action:manipulation}
+.lego-btn:after{content:'';position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(255,255,255,0.08),transparent 40%);mix-blend-mode:overlay;pointer-events:none}
+.lego-btn .studs{position:absolute;top:18px;display:flex;gap:12px;z-index:8}
+.lego-btn .studs span{display:block;width:48px;height:48px;border-radius:50%;background:linear-gradient(180deg,#fff,#fffbcc);box-shadow:inset 0 -10px 18px rgba(0,0,0,0.32),0 12px 30px rgba(0,0,0,0.28);border:3px solid rgba(255,255,255,0.12);transition:transform .26s;pointer-events:none}
+.lego-btn.pop{box-shadow:0 26px 46px rgba(0,0,0,0.6), inset 0 -6px 14px rgba(0,0,0,0.18);transform:translateY(-10px) scale(1.02)}
+
+.actions{display:flex;gap:10px}
+.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 12px;border-radius:8px;color:var(--muted);cursor:pointer}
+.ghost.warn{border-color:#ff6b6b;color:#ffb6b6}
+
+.card{display:flex;justify-content:space-between;align-items:center;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 20px rgba(0,0,0,0.45)}
+.card .card-title{font-weight:700}
+.card .card-sub{font-size:12px;color:var(--muted)}
+.card .item-icon{width:48px;height:36px;border-radius:6px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);display:flex;align-items:center;justify-content:center;margin-right:8px}
+.card .card-left{display:flex;align-items:center;gap:8px}
+.card.cash{background:linear-gradient(90deg,#ffd36a,#ff9e1a);color:#2b0e00}
+.card button.cash{margin-left:8px;background:linear-gradient(90deg,#ffd36a,#ff9e1a);border:none;color:#2b0e00;padding:6px 8px;border-radius:8px}
+.card button.cash[disabled]{opacity:.6}
+.card .cost{font-weight:800;color:var(--accent);margin-right:8px}
+.card button{padding:8px 12px;border-radius:10px;border:none;background:linear-gradient(180deg,#ffd96d,#ffb400);cursor:pointer;box-shadow:0 8px 18px rgba(255,170,50,0.08)}
+.card button[disabled]{opacity:.45;cursor:not-allowed}
+.card button.owned{background:linear-gradient(180deg,#444,#333);color:#bbb}
+.card.upgrade button{background:linear-gradient(180deg,#c8b3ff,#8f5bff)}
+
+/* subtle hover glows */
+.card:hover{box-shadow:0 14px 40px rgba(0,0,0,0.6), 0 4px 20px rgba(255,160,50,0.05);transform:translateY(-4px)}
+
+/* animated stud shimmer */
+@keyframes stud-shine{0%{transform:translateY(0)}50%{transform:translateY(-2px)}100%{transform:translateY(0)}}
+.lego-btn .studs span{animation: stud-shine 2.8s ease-in-out infinite}
+
+/* pressed state for immediate feedback */
+.lego-btn.pressed{transform:translateY(6px) scale(.99)}
+
+.footer{position:fixed;left:16px;right:16px;bottom:12px;display:flex;justify-content:space-between;opacity:.9}
+.bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;display:flex;gap:12px;background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));padding:8px;border-radius:14px}
+.nav-btn{width:54px;height:54px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer}
+.nav-btn.active{background:linear-gradient(180deg,rgba(255,255,255,0.04),transparent);color:#fff;box-shadow:0 8px 18px rgba(0,0,0,0.5)}
+.nav-btn.pass{background:linear-gradient(90deg,#ff7bd6,#7ad3ff);color:#fff;border:none}
+
+/* modal */
+.modal.hidden{display:none}
+.modal{position:fixed;left:0;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.45);z-index:40}
+.modal-card{background:linear-gradient(180deg,var(--card),#081226);padding:18px;border-radius:12px;width:320px;display:flex;flex-direction:column;gap:10px}
+.modal-card input{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:#fff}
+.modal-actions{display:flex;gap:8px}
+.auth-msg{font-size:13px;color:var(--muted);min-height:18px}
+
+/* brick-face */
+.lego-btn .brick-face{position:relative;z-index:1;pointer-events:none}
+/* make the brick-face look more like a LEGO brick */
+.lego-btn .brick-face svg{width:82%;height:auto;display:block}
+.brick-img{width:86%;height:auto;display:block;border-radius:10px}
+
+/* Hero banner */
+.hero{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:12px 18px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;margin:8px 18px}
+.hero-left{max-width:60%}
+.hero-title{margin:0;font-size:18px;letter-spacing:1px;color:var(--accent)}
+.hero-sub{margin:2px 0 0 0;color:var(--muted);font-size:13px}
+.hero-right{width:220px;display:flex;align-items:center;justify-content:flex-end}
+
+/* Big cookie-style counter */
+.big-counter{position:absolute;left:50%;transform:translateX(-50%);top:12px;display:flex;flex-direction:column;align-items:center;pointer-events:none}
+.big-count{font-size:48px;font-weight:900;letter-spacing:1px;color:var(--accent);text-shadow:0 12px 36px rgba(0,0,0,0.6)}
+.big-sub{font-size:14px;color:var(--muted);margin-top:4px}
+
+/* Larger central brick like Cookie Clicker's big cookie */
+.lego-btn{width:360px;height:200px;border-radius:22px}
+
+/* Golden cookie style */
+.golden-collectible{position:absolute;width:78px;height:44px;border-radius:12px;background:linear-gradient(180deg,#fff2b8,#ffd36a);display:flex;align-items:center;justify-content:center;color:#2b0e00;font-weight:900;box-shadow:0 18px 40px rgba(255,200,40,0.18);cursor:pointer;pointer-events:auto;transition:transform .18s ease,opacity .2s ease;z-index:60}
+.golden-collectible.small{width:56px;height:32px;border-radius:8px}
+.golden-collectible:hover{transform:translateY(-8px) scale(1.06)}
+
+
+/* LPS meter */
+.meter{width:160px;height:12px;background:rgba(0,0,0,0.18);border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+.meter-fill{height:100%;background:linear-gradient(90deg,#ffd36a,#ff6b6b);width:0%;transition:width 600ms cubic-bezier(.2,.9,.2,1)}
+
+/* Confetti */
+.confetti{position:absolute;right:12px;top:-6px;width:200px;height:120px;pointer-events:none;overflow:visible}
+.confetti .piece{position:absolute;width:10px;height:14px;opacity:0;transform:translateY(0) rotate(0);}
+
+/* floating gain */
+.floating-gain{position:fixed;font-weight:800;color:#fff;text-shadow:0 6px 14px rgba(0,0,0,0.6);pointer-events:none;transform:translateY(0);transition:transform 800ms cubic-bezier(.2,.9,.2,1),opacity 800ms}
+
+
+/* Hand icons around the main brick */
+.hand-container{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:4}
+.hand-icon{position:absolute;width:34px;height:34px;border-radius:8px;background:linear-gradient(180deg,#fff8e0,#ffd96d);color:#6b3f00;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;box-shadow:0 8px 20px rgba(0,0,0,0.45);transform-origin:center;transition:transform .28s ease,opacity .3s;pointer-events:none}
+.hand-icon .count{position:absolute;right:-6px;bottom:-6px;background:#ff6a6a;color:#fff;border-radius:10px;font-size:11px;padding:2px 5px;box-shadow:0 6px 12px rgba(0,0,0,0.4)}
+
+/* crack overlay shown during prestige crack */
+.lego-btn.crack::before{content:'';position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .16s ease}
+.lego-btn.crack::before{
+  background-image: linear-gradient(135deg, rgba(255,255,255,0.03), transparent), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 56'><path d='M30 12 L46 26 L38 36 L58 24 L50 44 L74 28' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' fill='none' opacity='0.95'/></svg>");
+  mix-blend-mode:overlay;
+}
+.lego-btn.crack::before{opacity:1}
+
+/* briefly bigger when cutscene lifts */
+.lego-btn.lift{transition:transform .9s cubic-bezier(.2,.9,.2,1), filter .9s; transform: translateY(-80px) scale(1.02) rotate(-6deg); filter: drop-shadow(0 30px 30px rgba(0,0,0,0.6));}
+.toast{position:fixed;left:50%;transform:translateX(-50%) translateY(32px);background:#0b1220;padding:8px 12px;border-radius:8px;color:#fff;opacity:0;transition:all .28s ease}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast.warn{background:#4b1b1b}
+
+/* canvas covers full screen */
+#fx{position:fixed;left:0;top:0;pointer-events:none;width:100%;height:100%;z-index:0}
+
+/* scrollbar */
+.shop::-webkit-scrollbar{width:8px}
+.shop::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:6px}
+
+@media(max-width:900px){
+  .wrap{flex-direction:column}
+  .shop{width:100%;height:38vh}
+  .lego-btn{width:80%;height:140px}
+}
+
+/* collectibles (spawned little bricks that can be clicked) */
+.collectibles{position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none}
+.collectible{position:absolute;width:56px;height:28px;border-radius:8px;background:linear-gradient(180deg,#ffd96d,#ffb400);display:flex;align-items:center;justify-content:center;color:#2b0e00;font-weight:800;box-shadow:0 8px 18px rgba(0,0,0,0.5);cursor:pointer;pointer-events:auto;transition:transform .18s ease,opacity .2s ease}
+.collectible small{font-size:12px;opacity:.9}
+.collectible:hover{transform:translateY(-6px) scale(1.04)}
+.collectible.fade{opacity:0.0;transform:scale(0.9)}
